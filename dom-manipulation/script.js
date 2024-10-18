@@ -190,7 +190,7 @@ function syncQuotes(serverQuotes) {
   localStorage.setItem("quotes", JSON.stringify(mergedQuotes));
 
   // Notify user that data has been synced
-  alert("Quotes have been synced with the server!");
+  alert("Quotes synced with server!");
 
   quotes = mergedQuotes;
   populateCategories();
