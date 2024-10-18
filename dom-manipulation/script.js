@@ -64,6 +64,9 @@ function addQuote() {
   saveQuotes();
   populateCategories();
   alert("New quote added successfully!");
+
+  // Simulate posting the new quote to a server
+  postQuoteToServer(newQuote);
 }
 
 // Function to populate the category dropdown based on available categories
@@ -126,6 +129,28 @@ function importFromJsonFile(event) {
     alert("Quotes imported successfully!");
   };
   fileReader.readAsText(event.target.files[0]);
+}
+
+// Function to post a new quote to the simulated server
+async function postQuoteToServer(quote) {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quote),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to post quote to server");
+    }
+
+    const serverResponse = await response.json();
+    console.log("Quote posted to server:", serverResponse);
+  } catch (error) {
+    console.error("Error posting quote to server:", error);
+  }
 }
 
 // Simulate fetching quotes from a server
